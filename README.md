@@ -1,0 +1,2 @@
+# deals
+Simple javascript app
