@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Negociação</title>
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/bootstrap-theme.css">
+</head>
+
+<body class="container">
+  <h1 class="text-center">Negociação</h1>
+  <div id="message-view"></div>
+  <form class="form">
+    <div class="form-group">
+      <label for="date">Data</label>
+      <input id="date" class="form-control" type="text" placeholder="dd/mm/aaaa" required autofocus/>
+    </div>
+    <div class="form-group">
+      <label for="amount">Quantidade</label>
+      <input id="amount" class="form-control" type="number" min="1" step="1" value="1" required/>
+    </div>
+    <div class="form-group">
+      <label for="value">Valor</label>
+      <input id="value" class="form-control" type="number" min="0.01" step="0.01" value="0.0" required />
+    </div>
+    <button class="btn btn-primary" type="submit">Incluir</button>
+  </form>
+  <div class="text-center">
+    <button class="btn btn-primary text-center" type="button">Apagar</button>
+  </div>
+
+  <br>
+  <br>
+
+  <div id="deals-view"></div>
+
+  <script src="node_modules/systemjs/dist/system.js"></script>
+  <script>
+    System.defaultJSExtensions = true;
+    System.import('js/app/boot').catch(function(err){
+      console.error(err);
+     });
+  </script>
+</body>
+</html>
