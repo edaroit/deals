@@ -1,7 +1,6 @@
 # Deals
 
-Deals is a simple web application using ECMAScript 2015, Node.js and pure IndexedDB
-
+### Deals is a simple web application using ECMAScript 2015, Node.js and pure IndexedDB
 
 > `npm install`
 
