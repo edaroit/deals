@@ -6,8 +6,7 @@ export class DealsView extends View {
   constructor (element) {
     super(element)
     element.addEventListener('click', (event) => {
-      if (event.target.nodeName == 'TH')
-        currentInstance().order(event.target.textContent.toLowerCase())
+      if (event.target.nodeName == 'TH') { currentInstance().order(event.target.textContent.toLowerCase()) }
     })
   }
 

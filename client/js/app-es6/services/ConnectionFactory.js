@@ -37,8 +37,7 @@ export class ConnectionFactory {
 
   static _createStores (connection) {
     stores.forEach(store => {
-      if (connection.objectStoreNames.contains(store))
-        connection.deleteObjectStore(store)
+      if (connection.objectStoreNames.contains(store)) { connection.deleteObjectStore(store) }
       connection.createObjectStore(store, { autoIncrement: true })
     })
   }
