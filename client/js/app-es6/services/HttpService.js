@@ -1,15 +1,13 @@
 export class HttpService {
-
-  get(url) {
+  get (url) {
     return fetch(url)
     .then(res => this._handleErrors(res))
-    .then(res => res.json());
+    .then(res => res.json())
   }
 
-  _handleErrors(res) {
-    if(!res.ok) throw new Error(res.statusText);
+  _handleErrors (res) {
+    if (!res.ok) throw new Error(res.statusText)
 
-    return res;
+    return res
   }
-
 }

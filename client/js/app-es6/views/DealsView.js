@@ -1,19 +1,17 @@
-import {View} from './View';
-import {currentInstance} from '../controllers/DealController';
-import {DateConverter} from '../helpers/DateConverter';
+import {View} from './View'
+import {currentInstance} from '../controllers/DealController'
+import {DateConverter} from '../helpers/DateConverter'
 
 export class DealsView extends View {
+  constructor (element) {
+    super(element)
 
-  constructor(element) {
-    super(element);
-
-    element.addEventListener('click', function(event) {
-      if(event.target.nodeName == 'TH')
-        currentInstance().order(event.target.textContent.toLowerCase());
-    });
+    element.addEventListener('click', function (event) {
+      if (event.target.nodeName == 'TH') { currentInstance().order(event.target.textContent.toLowerCase()) }
+    })
   }
 
-  template(model) {
+  template (model) {
     return `
     <table class="table table-hover table-bordered">
       <thead>
@@ -39,7 +37,6 @@ export class DealsView extends View {
         <td>${model.totalVolume}</td>
       </tfoot>
     </table>
-      `;
+      `
   }
-
 }

@@ -1,73 +1,70 @@
-import {Deal} from '../models/Deal';
+import {Deal} from '../models/Deal'
 
 export class DealDao {
-
-  constructor(connection) {
-    this._connection = connection;
-    this._store = 'deals';
+  constructor (connection) {
+    this._connection = connection
+    this._store = 'deals'
   }
 
-  add(deal) {
+  add (deal) {
     return new Promise((resolve, reject) => {
       let request = this._connection
       .transaction([this._store], 'readwrite')
       .objectStore(this._store)
-      .add(deal);
+      .add(deal)
 
       request.onsuccess = e => {
-        resolve();
-      };
+        resolve()
+      }
 
       request.onerror = e => {
-        console.log(e.target.error);
-        reject('Não foi possível adicionar a negociação');
-      };
-    });
+        console.log(e.target.error)
+        reject('Não foi possível adicionar a negociação')
+      }
+    })
   }
 
-  delete() {
+  delete () {
     return new Promise((resolve, reject) => {
       let request = this._connection
       .transaction([this._store], 'readwrite')
       .objectStore(this._store)
-      .clear();
+      .clear()
 
-      request.onsuccess = e => resolve('Negociações apagadas com sucesso');
+      request.onsuccess = e => resolve('Negociações apagadas com sucesso')
 
       request.onerror = e => {
-        console.log(e.target.error);
-        reject('Não foi possível apagar as negociações');
-      };
-    });
+        console.log(e.target.error)
+        reject('Não foi possível apagar as negociações')
+      }
+    })
   }
 
-  list() {
+  list () {
     return new Promise((resolve, reject) => {
       let cursor = this._connection
       .transaction([this._store], 'readwrite')
       .objectStore(this._store)
-      .openCursor();
+      .openCursor()
 
-      let deals = [];
+      let deals = []
 
       cursor.onsuccess = e => {
+        let actual = e.target.result
 
-        let actual = e.target.result;
-
-        if(actual) {
-          let data = actual.value;
-          deals.push(new Deal(data._date, data._amount, data._value));
-          actual.continue();
+        if (actual) {
+          let data = actual.value
+          deals.push(new Deal(data._date, data._amount, data._value))
+          actual.continue()
         } else {
-          resolve(deals);
+          resolve(deals)
         }
-      };
+      }
 
       cursor.onerror = e => {
-        console.log(e.target.error);
-        reject('Não foi possível listar as negociações');
-      };
-    });
+        console.log(e.target.error)
+        reject('Não foi possível listar as negociações')
+      }
+    })
   }
-
 }
