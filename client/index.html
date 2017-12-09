@@ -37,9 +37,7 @@
   <script src="node_modules/systemjs/dist/system.js"></script>
   <script>
     System.defaultJSExtensions = true;
-    System.import('js/app/boot').catch(function(err){
-      console.error(err);
-     });
+    System.import('js/app/boot').catch((err) => console.error(err));
   </script>
 </body>
 </html>
