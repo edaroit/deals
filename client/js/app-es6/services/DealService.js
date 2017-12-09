@@ -14,7 +14,9 @@ export class DealService {
       .then(connection => new DealDao(connection))
       .then(dao => dao.delete())
       .then(() => 'Negociações apagadas com sucesso')
-      .catch(error => throw new Error('Não foi possível apagar as negociações'))
+      .catch(error => {
+        throw new Error('Não foi possível apagar as negociações')
+      })
   }
 
   register (deal) {
@@ -23,7 +25,9 @@ export class DealService {
       .then(connection => new DealDao(connection))
       .then(dao => dao.add(deal))
       .then(() => 'Negociação adicionada com sucesso')
-      .catch(error => throw new Error('Não foi possível adicionar a negociação'))
+      .catch(error => {
+        throw new Error('Não foi possível adicionar a negociação')
+      })
   }
 
   import (list) {
@@ -33,7 +37,9 @@ export class DealService {
           !list.some(existingDeal =>
             JSON.stringify(deal) == JSON.stringify(existingDeal)))
         )
-      .catch(error => throw new Error('Não foi possível buscar negociações para importar'))
+      .catch(error => {
+        throw new Error('Não foi possível buscar negociações para importar')
+      })
   }
 
   list () {
@@ -41,7 +47,9 @@ export class DealService {
       .getConnection()
       .then(connection => new DealDao(connection))
       .then(dao => dao.list())
-      .catch(error => throw new Error('Não foi possível obter as negociações'))
+      .catch(error => {
+        throw new Error('Não foi possível obter as negociações')
+      })
   }
 
   post () {
@@ -58,27 +66,35 @@ export class DealService {
       .reduce((datas, period) => datas.concat(period), [])
       .map(data => new Deal(new Date(data.date), data.amount, data.value))
       return deals
-    }).catch(error => throw new Error(error))
+    }).catch(error => {
+      throw new Error(error)
+    })
   }
 
   getWeekDeals () {
     return this._http
       .get('deal/week')
       .then(deals => deals.map(object => new Deal(new Date(object.date), object.amount, object.value)))
-      .catch(error => throw new Error('Não foi possível obter as negociações da semana'))
+      .catch(error => {
+        throw new Error('Não foi possível obter as negociações da semana')
+      })
   }
 
   getLasWeekDeals () {
     return this._http
       .get('deal/last')
       .then(deals => deals.map(object => new Deal(new Date(object.date), object.amount, object.value)))
-      .catch(error => throw new Error('Não foi possível obter as negociações da semana anterior'))
+      .catch(error => {
+        throw new Error('Não foi possível obter as negociações da semana anterior')
+      })
   }
 
   getFortnightWeek () {
     return this._http
       .get('deal/fortnight')
       .then(deals => deals.map(object => new Deal(new Date(object.date), object.amount, object.value)))
-      .catch(error => throw new Error('Não foi possível obter as negociações da semana retrasada'))
+      .catch(error => {
+        throw new Error('Não foi possível obter as negociações da semana retrasada')
+      })
   }
 }

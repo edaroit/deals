@@ -25,7 +25,9 @@ export class ConnectionFactory {
         if (!connection) {
           connection = e.target.result
           close = connection.close.bind(connection)
-          connection.close = () => throw new Error('Você não pode fechar diretamente a conexão')
+          connection.close = () => {
+            throw new Error('Você não pode fechar diretamente a conexão')
+          }
         }
         resolve(connection)
       }
