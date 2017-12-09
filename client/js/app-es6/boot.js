@@ -1,5 +1,5 @@
 import { currentInstance } from './controllers/DealController'
-import from './polyfill/fetch'
+import { } from './polyfill/fetch'
 const dealController = currentInstance()
 
 document.querySelector('.form').onsubmit = dealController.add.bind(dealController)
