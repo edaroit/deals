@@ -8,8 +8,7 @@ export class DateConverter {
   }
 
   static textToDate (text) {
-    if (!/\d{2}\/\d{2}\/\d{4}/.test(text))
-      throw new Error('Deve estar no formato dd/mm/aaaa')
+    if (!/\d{2}\/\d{2}\/\d{4}/.test(text)) { throw new Error('Deve estar no formato dd/mm/aaaa') }
 
     return new Date(...text.split('/').reverse().map((item, index) => item - index % 2))
   }
