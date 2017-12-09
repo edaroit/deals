@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "standard",
-    "lint-fixer": "standard --fix",
+    "lint": "standard js/app-es6.js",
     "build": "babel js/app-es6 -d js/app --source-maps",
     "watch": "babel js/app-es6 -d js/app --source-maps --watch"
   },
